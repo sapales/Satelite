@@ -21,7 +21,7 @@ public class Vt050013 {
 		// - path destino
 		// - ID del FTP
 	    if(!leerProperties()) {
-	    	log.error("Error leyendo el fichero de configuración.");
+	    	log.error("Error leyendo el fichero de configuraciÃ³n.");
 	    	return false;
 	    }
 		
@@ -31,9 +31,9 @@ public class Vt050013 {
     		return false;
     	}
 		
-		// Comprobamos que contenga información
+		// Comprobamos que contenga informaciï¿½n
 	    if(!FileUtil.isEmptyFile(vt050013Bean.getFicheroOrigen())){
-	    	log.info("El fichero origen: " + vt050013Bean.getFicheroOrigen() + " no contiene información.");
+	    	log.info("El fichero origen: " + vt050013Bean.getFicheroOrigen() + " no contiene informaciï¿½n.");
     		return false;
     	}
 		
@@ -69,8 +69,8 @@ public class Vt050013 {
 	}
 	
 	/**
-	 * Método para leer el fichero de propiedades (.properties) del proceso Vt050013. 
-	 * Lee el fichero y lo valida comprobando que están todas las claves y que sus valores son correctos
+	 * Mï¿½todo para leer el fichero de propiedades (.properties) del proceso Vt050013. 
+	 * Lee el fichero y lo valida comprobando que estï¿½n todas las claves y que sus valores son correctos
 	 * 
 	 * @return (true/false)
 	 */

@@ -24,7 +24,7 @@ public class FileUtil {
 	private static final Logger log = Logger.getLogger(FileUtil.class.getPackage().getName());
 	
 	/**
-	 * Método que comprueba si existe un fichero recibido como parámetro
+	 * MÃ©todo que comprueba si existe un fichero recibido como parÃ¡metro
 	 * @author Santiago Pastor
 	 * @version 1.0.0
 	 */
@@ -41,7 +41,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * Método que comprueba si un fichero recibido como parámetro contiene datos o no
+	 * MÃ©todo que comprueba si un fichero recibido como parÃ¡metro contiene datos o no
 	 * @author Santiago Pastor
 	 * @version 1.0.0
 	 */
@@ -61,7 +61,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * Método que hace un backup de un fichero en ud directorio, ambos recibidos como parámetros, añadiéndole el Timestamp
+	 * MÃ©todo que hace un backup de un fichero en un directorio, ambos recibidos como parÃ¡metros, aÃ±adiÃ©ndole el Timestamp
 	 * @author Santiago Pastor
 	 * @version 1.0.0
 	 */
@@ -85,7 +85,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * Método que devuelve el path de un fichero
+	 * MÃ©todo que devuelve el path de un fichero
 	 * @author Santiago Pastor
 	 * @version 1.0.0
 	 */
@@ -98,7 +98,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * Método que devuelve el nombre de un fichero sin extensión
+	 * MÃ©todo que devuelve el nombre de un fichero sin extensiï¿½n
 	 * @author Santiago Pastor
 	 * @version 1.0.0
 	 */
@@ -111,7 +111,7 @@ public class FileUtil {
 	}
 
 	/**
-	 * Método que devuelve la extensión de un fichero
+	 * MÃ©todo que devuelve la extensiï¿½n de un fichero
 	 * @author Santiago Pastor
 	 * @version 1.0.0
 	 */
@@ -124,7 +124,7 @@ public class FileUtil {
 	}
 
     /**
-     * Método que copia todo el contenido de un directorio a otro directorio
+     * MÃ©todo que copia todo el contenido de un directorio a otro directorio
      * @param srcDir
      * @param dstDir
      * @throws IOException
@@ -155,7 +155,7 @@ public class FileUtil {
     }    
     
     /**
-     * Método que copia un archivo de un sitio a otro
+     * MÃ©todo que copia un archivo de un sitio a otro
      * @param s
      * @param t
      * @throws IOException
@@ -176,7 +176,7 @@ public class FileUtil {
     }
     
     /**
-     * Método que copia un archivo de un sitio a otro
+     * MÃ©todo que copia un archivo de un sitio a otro
      * @param s
      * @param t
      * @throws IOException
@@ -199,7 +199,7 @@ public class FileUtil {
     }
 
     /**
-     * Método que copia un archivo de un sitio a otro reemplazando un String por otro
+     * MÃ©todo que copia un archivo de un sitio a otro reemplazando un String por otro
      * @param source_file
      * @param destination_file
      * @param toFind
