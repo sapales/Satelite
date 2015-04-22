@@ -10,9 +10,13 @@ import java.nio.channels.FileChannel;
 import java.nio.file.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
-
+import java.util.LinkedList;
+import java.util.regex.Pattern;
 /**
  * Clase para utilidades de ficheros
  * @author Santiago Pastor
@@ -40,6 +44,35 @@ public class FileUtil {
 		}
 	}
 	
+	/**
+	 * Método que devuelve los ficheros que coincidan con un determinado patrón recibido como parámetro
+	 * @author Santiago Pastor
+	 * @version 1.0.0
+	 */
+	/* Santi: Este método está esbozado tomando como modelo:
+	 * http://chuwiki.chuidiang.org/index.php?title=B%C3%BAsqueda_de_ficheros
+	 * Hay que adaptarlo y terminarlo. Lo comento mientras tanto
+	 */
+/*	public static ArrayList<String> dameFicherosByPatron(String directorio, String ficheroConPatron){
+		
+		ArrayList<String> ficherosByPatron =  new ArrayList<String>(); 
+		
+		try{
+			File[] ficheros = directorio.listFiles();
+			for (int i = 0; i < ficheros.length; i++)
+			{
+				if(ficheros[i]="patron")
+				{
+					ficherosByPatron.add(ficheros[i].getName());
+				}
+			return ficherosByPatron;
+		}
+		catch (Exception e){
+			log.error(e.getMessage());
+			return false;
+		}
+	}*/
+		
 	/**
 	 * Método que comprueba si un fichero recibido como parámetro contiene datos o no
 	 * @author Santiago Pastor
@@ -70,12 +103,13 @@ public class FileUtil {
 		// Conformamos el nombre del fichero de Backup
 		Date fecha = new Date();
 		SimpleDateFormat formato = new SimpleDateFormat("yyyyMMdd_HHmmss");
-		String ficheroBackup= dirBackup + nombreFichero(fichero) + "_" + formato.format(fecha) + "." + extensionFichero(fichero);
-		
+		String ficheroBackup= dirBackup + getNombreFichero(fichero) + "_" + formato.format(fecha) + "." + getExtensionFichero(fichero);
 		
 		try{
-			copiarFichero(fichero, ficheroBackup);
-			return true;
+			if(copiarFichero(fichero, ficheroBackup))
+				return true;
+			else
+				return false;
 		}
 		catch (Exception e){
 			log.error(e.getMessage());
@@ -89,7 +123,7 @@ public class FileUtil {
 	 * @author Santiago Pastor
 	 * @version 1.0.0
 	 */
-	public static String pathFichero(String pathAndFichero){
+	public static String getPathFichero(String pathAndFichero){
 		
 		String fichero= pathAndFichero.substring(0, pathAndFichero.lastIndexOf('/')+1);
 		
@@ -98,15 +132,37 @@ public class FileUtil {
 	}
 	
 	/**
-	 * Método que devuelve el nombre de un fichero sin extensi�n
+	 * Método que devuelve el nombre de un fichero sin extensión ni path
 	 * @author Santiago Pastor
 	 * @version 1.0.0
 	 */
-	public static String nombreFichero(String pathAndFichero){
+	public static String getNombreFichero(String pathAndFichero){
 		
-		String fichero= pathAndFichero.substring(pathAndFichero.lastIndexOf('/')+1, pathAndFichero.lastIndexOf('.'));
+		File fichero = new File(pathAndFichero);
 		
-		return fichero;
+		// Obtenemos el nombre del fichero y extensión del mismo sin el PATH
+		String nombreFichero= fichero.getName();
+				
+		// Quitamos la extensión
+		nombreFichero= nombreFichero.substring(0, nombreFichero.lastIndexOf('.'));
+		
+		return nombreFichero;
+		
+	}
+
+	/**
+	 * Método que devuelve el nombre de un fichero sin extensión ni path
+	 * @author Santiago Pastor
+	 * @version 1.0.0
+	 */
+	public static String getNombreExtensionFichero(String pathAndFichero){
+		
+		File fichero = new File(pathAndFichero);
+		
+		// Obtenemos el nombre del fichero y extensión del mismo sin el PATH
+		String nombreFichero= fichero.getName();
+		
+		return nombreFichero;
 		
 	}
 
@@ -115,7 +171,7 @@ public class FileUtil {
 	 * @author Santiago Pastor
 	 * @version 1.0.0
 	 */
-	public static String extensionFichero(String pathAndFichero){
+	public static String getExtensionFichero(String pathAndFichero){
 		
 		String fichero= pathAndFichero.substring(pathAndFichero.lastIndexOf('.')+1);
 		
@@ -170,7 +226,7 @@ public class FileUtil {
         }
         catch(Exception e)
         {
-            System.out.println(e);
+            log.error(e.getMessage());
             return false;
         }
     }
@@ -246,4 +302,34 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Busca todos los ficheros que cumplen la máscara que se le pasa y los
+     * mete en la listaFicheros que se le pasa.
+     * 
+     * @param pathInicial Path inicial de búsqueda. Debe ser un directorio que
+     * exista y con permisos de lectura.
+     * @param mascara Una máscara válida para la clase Pattern de java.
+     * @param listaFicheros Una lista de ficheros a la que se añadirán los File
+     * que cumplan la máscara. No puede ser null. El método no la vacía.
+     * @param busquedaRecursiva Si la búsqueda debe ser recursiva en todos los
+     * subdirectorios por debajo del pathInicial.
+     */
+    public static void dameFicheros(String pathInicial, String mascara,
+            LinkedList<File> listaFicheros, boolean busquedaRecursiva)
+    {
+        File directorioInicial = new File(pathInicial);
+        if (directorioInicial.isDirectory())
+        {
+            File[] ficheros = directorioInicial.listFiles();
+            for (int i = 0; i < ficheros.length; i++)
+            {
+                if (ficheros[i].isDirectory() && busquedaRecursiva)
+                    dameFicheros(ficheros[i].getAbsolutePath(), mascara,
+                            listaFicheros, busquedaRecursiva);
+                else if (Pattern.matches(mascara, ficheros[i].getName()))
+                    listaFicheros.add(ficheros[i]);
+            }
+        }
+    }
+    
 }

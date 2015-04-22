@@ -32,10 +32,10 @@ public class Satelite {
 			log.error("Error ejecutando el proceso de eliminación de ficheros...");
 */		
 		// Ejecutamos el tratamiento del fichero VT050013
-		log.info("Ejecutamos el tratamiento del fichero VT050013...");
+/*		log.info("Ejecutamos el tratamiento del fichero VT050013...");
 		Vt050013 vt050013 = new Vt050013();
 		if(!vt050013.procesar())
-			log.error("Error ejecutando el tratamiento del fichero VT050013...");
+			log.error("Error ejecutando el tratamiento del fichero VT050013...");*/
 
 		// Ejecutamos el tratamiento del fichero VT050052
 		log.info("Ejecutamos el tratamiento del fichero VT050052...");

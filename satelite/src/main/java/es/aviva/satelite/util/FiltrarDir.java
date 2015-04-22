@@ -19,11 +19,11 @@ public class FiltrarDir {
 		String ficheroExtension = "";
 		String nombreReal       = "";
 		
-		// Hasta que revise este m閠odo, pongo el patr髇 en may鷖culas y cada vez que
-		// recupero un fichero, tambi閚 lo paso a may鷖culas
+		// TODO Santi. Hasta que revise este m茅todo, pongo el patr贸n en may煤sculas y cada vez que
+		// recupero un fichero, tambi茅n lo paso a may煤sculas
 		patron = patron.toUpperCase();
 		
-		// Separamos Nombre y Extensi髇 del patr髇
+		// Separamos Nombre y Extensi贸n del patr贸n
 		int idx = patron.lastIndexOf('.');
 		if (idx > -1) {
 			filtroExtension = patron.substring(idx+1);
@@ -43,9 +43,9 @@ public class FiltrarDir {
 			
 			// Guardamos el nombre real del fichero
 			nombreReal=ficheros[i];
-			// Ponemos en may鷖culas el nombre del fichero para comparar
+			// Ponemos en may煤sculas el nombre del fichero para comparar
 			ficheros[i]=ficheros[i].toUpperCase();
-			// Separamos Nombre y Extensi髇 del fichero
+			// Separamos Nombre y Extensi贸n del fichero
 			idx = ficheros[i].lastIndexOf('.');
 			if (idx > -1) {
 				ficheroExtension = ficheros[i].substring(idx+1);
@@ -89,9 +89,9 @@ public class FiltrarDir {
 					ficheros[i] = "";
 				}
 			}
-			// Filtramos la extensi髇 
+			// Filtramos la extensi贸n 
 			if(filtroExtension.equals("*")){
-				// No filtramos la extensi髇
+				// No filtramos la extensi贸n
 			}else if(filtroExtension.startsWith("*") && filtroExtension.endsWith("*")){
 				// Cogemos los caracteres intermedios
 				caracteres=filtroExtension.substring(1,filtroExtension.length()-2);
@@ -142,7 +142,7 @@ public class FiltrarDir {
 		String ficheroNombre    = "";
 		String ficheroExtension = "";
 		
-		// Separamos Nombre y Extensi髇 del patr髇
+		// Separamos Nombre y Extensi贸n del patr贸n
 		int idx = patron.lastIndexOf('.');
 		if (idx > -1) {
 			filtroExtension = patron.substring(idx+1);
@@ -160,7 +160,7 @@ public class FiltrarDir {
 		// Filtramos
 		for(int i=0;i<ficheros.length;i++){
 			
-			// Separamos Nombre y Extensi髇 del fichero
+			// Separamos Nombre y Extensi贸n del fichero
 			idx = ficheros[i].lastIndexOf('.');
 			if (idx > -1) {
 				ficheroExtension = ficheros[i].substring(idx+1);
@@ -204,9 +204,9 @@ public class FiltrarDir {
 					ficheros[i] = "";
 				}
 			}
-			// Filtramos la extensi髇 
+			// Filtramos la extensi锟絥 
 			if(filtroExtension.equals("*")){
-				// No filtramos la extensi髇
+				// No filtramos la extensi锟絥
 			}else if(filtroExtension.startsWith("*") && filtroExtension.endsWith("*")){
 				// Cogemos los caracteres intermedios
 				caracteres=filtroExtension.substring(1,filtroExtension.length()-2);
