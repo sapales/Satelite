@@ -13,7 +13,14 @@ public class Vt050052Bean {
 	private String emailCC;
 	private String emailFrom;
 	private String txtEmail;
+	private String baseDeDatos;
 	
+	public String getBaseDeDatos() {
+		return baseDeDatos;
+	}
+	public void setBaseDeDatos(String baseDeDatos) {
+		this.baseDeDatos = baseDeDatos;
+	}
 	public String getFicheroOrigen() {
 		return ficheroOrigen;
 	}

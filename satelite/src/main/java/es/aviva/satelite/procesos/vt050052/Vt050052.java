@@ -1,10 +1,12 @@
 package es.aviva.satelite.procesos.vt050052;
 
 import java.io.FileInputStream;
+import java.sql.Connection;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
+import es.aviva.satelite.util.ConexionSQLite;
 import es.aviva.satelite.util.FileUtil;
 
 public class Vt050052 {
@@ -12,6 +14,7 @@ public class Vt050052 {
 	private static final Logger log = Logger.getLogger(Vt050052.class.getPackage().getName());
 	private static final String FICH_PROPERTIES = "conf/vt050052.properties";
 	private Vt050052Bean vt050052Bean = new Vt050052Bean();
+	Connection conexion;
 	
 	public boolean procesar(){
 	
@@ -51,7 +54,10 @@ public class Vt050052 {
     		return false;
 		}
 	    		
-		// Abrimos la base de datos de SQLite
+        // Abrimos la base de datos (conexión)
+        conexion = ConexionSQLite.getConexion("db/"+vt050052Bean.getBaseDeDatos());
+        if(conexion==null)
+            return false;            
 		
 		
 		// Importamos el fichero .dat en la base de datos de MsAccess
@@ -102,6 +108,7 @@ public class Vt050052 {
 			vt050052Bean.setEmailCC(prop.getProperty("emailCC"));
 			vt050052Bean.setEmailFrom(prop.getProperty("emailFrom"));
 			vt050052Bean.setTxtEmail(prop.getProperty("txtEmail"));
+			vt050052Bean.setBaseDeDatos(prop.getProperty("basededatos"));
 			return true;
 		}catch(Exception e){
 			log.error(e.getMessage());
