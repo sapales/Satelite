@@ -26,7 +26,7 @@ public class Vt050052 {
 		
 	    // Comprobamos si está activo el proceso
 	    if(!vt050052Bean.isActivo()){
-	    	log.error("Proceso desactivado en fichero properties.");
+	    	log.info("Proceso desactivado en fichero properties.");
 	    	return true;
 	    }
 	    

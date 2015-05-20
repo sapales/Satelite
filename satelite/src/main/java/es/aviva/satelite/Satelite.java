@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import es.aviva.satelite.procesos.eliminaficheros.EliminaFicheros;
 import es.aviva.satelite.procesos.vt050013.*;
 import es.aviva.satelite.procesos.vt050052.*;
+import es.aviva.satelite.procesos.ctadeefectivo.*;
 
 public class Satelite {
 
@@ -38,11 +39,17 @@ public class Satelite {
 			log.error("Error ejecutando el tratamiento del fichero VT050013...");*/
 
 		// Ejecutamos el tratamiento del fichero VT050052
-		log.info("Ejecutamos el tratamiento del fichero VT050052...");
+/*		log.info("Ejecutamos el tratamiento del fichero VT050052...");
 		Vt050052 vt050052 = new Vt050052();
 		if(!vt050052.procesar())
-			log.error("Error ejecutando el tratamiento del fichero VT050052...");
+			log.error("Error ejecutando el tratamiento del fichero VT050052...");*/
 	
+		// Ejecutamos el tratamiento del fichero VT050052
+		log.info("Ejecutamos el tratamiento de Cuenta de Efectivo...");
+		CtaDeEfectivo ctaDeEfectivo = new CtaDeEfectivo();
+		if(!ctaDeEfectivo.procesar())
+			log.error("Error ejecutando el tratamiento de Cuenta de Efectivo...");
+		
 		log.info("Fin de la ejecución.");
 		
 	}
